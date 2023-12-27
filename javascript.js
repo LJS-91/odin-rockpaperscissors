@@ -26,49 +26,53 @@ function getPlayerChoice() {
     return input;
 }
 
-//variable for wins in global scope
-let PlayerWins = 0;
-let ComputerWins = 0;
 
 //play 1 round:
 function playRound() {
-//normalize choices
-const PlayerSelection = getPlayerChoice().toLowerCase();
-const ComputerSelection = getComputerChoice().toLowerCase();
-//compare choices and decide who wins, count wins
-if (PlayerSelection == "rock" && ComputerSelection == "paper"){
-    ComputerWins++;
-    return ("Computer wins: " + ComputerSelection + " beats " + PlayerSelection + ".");
+    //normalize choices
+    const PlayerSelection = getPlayerChoice().toLowerCase();
+    const ComputerSelection = getComputerChoice().toLowerCase();
+    //compare selection and decide who wins, count wins
+    if (PlayerSelection == "rock" && ComputerSelection == "paper"){
+        ComputerWins++;
+        return ("Computer wins: " + ComputerSelection + " beats " + PlayerSelection + ".");
+    }
+    else if (PlayerSelection == "rock" && ComputerSelection == "scissors"){
+        PlayerWins++;
+        return ("Player wins: " + PlayerSelection + " beats " + ComputerSelection + ".");
+    }
+    else if (PlayerSelection == "paper" && ComputerSelection == "scissors"){
+        ComputerWins++;
+        return ("Computer wins: " + ComputerSelection + " beats " + PlayerSelection + ".");
+    }
+    else if (PlayerSelection == "paper" && ComputerSelection == "rock"){
+        PlayerWins++;
+        return ("Player wins: " + PlayerSelection + " beats " + ComputerSelection + ".");
+    }
+    else if (PlayerSelection == "scissors" && ComputerSelection == "rock"){
+        ComputerWins++;
+        return ("Computer wins: " + ComputerSelection + " beats " + PlayerSelection + ".");
+    }
+    else if (PlayerSelection == "scissors" && ComputerSelection == "paper"){
+        PlayerWins++;
+        return ("Player wins: " + PlayerSelection + " beats " + ComputerSelection + ".");
+    }
+    else {
+        ComputerWins++;
+        PlayerWins++;
+        return ("It's a tie. Please try again.");
+    }
 }
-else if (PlayerSelection == "rock" && ComputerSelection == "scissors"){
-    PlayerWins++;
-    return ("Player wins: " + PlayerSelection + " beats " + ComputerSelection + ".");
-}
-else if (PlayerSelection == "paper" && ComputerSelection == "scissors"){
-    ComputerWins++;
-    return ("Computer wins: " + ComputerSelection + " beats " + PlayerSelection + ".");
-}
-else if (PlayerSelection == "paper" && ComputerSelection == "rock"){
-    PlayerWins++;
-    return ("Player wins: " + PlayerSelection + " beats " + ComputerSelection + ".");
-}
-else if (PlayerSelection == "scissors" && ComputerSelection == "rock"){
-    ComputerWins++;
-    return ("Computer wins: " + ComputerSelection + " beats " + PlayerSelection + ".");
-}
-else if (PlayerSelection == "scissors" && ComputerSelection == "paper"){
-    PlayerWins++;
-    return ("Player wins: " + PlayerSelection + " beats " + ComputerSelection + ".");
-}
-else {
-    return ("It's a tie. Please try again.");
-}
-}
+
 
 //scoreboard
 function getWins() {
     console.log ("Total Wins: " + "Player " + PlayerWins + " | " + "Computer " + ComputerWins + ".");
 }
+
+//variable for wins in global scope
+let PlayerWins = 0;
+let ComputerWins = 0;
 
 //game of multiple sets
 function game(sets) {
